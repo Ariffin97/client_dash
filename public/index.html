@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Digital Client Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Fenix Digital Client Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar Section -->
+
+    <div class="container mt-5">
+        <!-- Overview Section -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Views</h5>
+                        <p class="card-text display-4">12,345</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Visitors</h5>
+                        <p class="card-text display-4">6,789</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Views per Day</h5>
+                        <div id="viewsChart" style="height: 150px;"> <!-- Placeholder for chart --></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Picture for Ad Section -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary btn-lg">Upload Ad Picture</button>
+            </div>
+        </div>
+
+        <!-- Detailed Metrics Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h4>Ad Performance</h4>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Ad Title</th>
+                            <th>Views</th>
+                            <th>Clicks</th>
+                            <th>Conversion Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ad 1</td>
+                            <td>1,000</td>
+                            <td>150</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td>Ad 2</td>
+                            <td>2,000</td>
+                            <td>300</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Visitor Demographics and Engagement Metrics -->
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <h4>Visitor Demographics</h4>
+                <div id="demographicsChart" style="height: 250px;"> <!-- Placeholder for chart --></div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h4>Engagement Metrics</h4>
+                <div id="engagementChart" style="height: 250px;"> <!-- Placeholder for chart --></div>
+            </div>
+        </div>
+
+        <!-- Upload New Ad Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h4>Upload New Ad</h4>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="adTitle">Ad Title</label>
+                            <input type="text" class="form-control" id="adTitle" placeholder="Enter ad title">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="adDescription">Description</label>
+                            <input type="text" class="form-control" id="adDescription" placeholder="Enter description">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="targetAudience">Target Audience</label>
+                            <input type="text" class="form-control" id="targetAudience" placeholder="Enter target audience">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="callToAction">Call to Action</label>
+                            <input type="text" class="form-control" id="callToAction" placeholder="Enter call to action">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="adImage">Upload Image</label>
+                        <input type="file" class="form-control-file" id="adImage">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Support & Feedback Section -->
+        <div class="row mt-4 mb-4">
+            <div class="col-md-6 mb-4">
+                <h4>Support Tickets</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="supportTicket">Describe your issue</label>
+                        <textarea class="form-control" id="supportTicket" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Ticket</button>
+                </form>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h4>Feedback Form</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="feedback">Your Feedback</label>
+                        <textarea class="form-control" id="feedback" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
