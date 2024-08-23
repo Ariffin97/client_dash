@@ -13,9 +13,21 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
     secret: 'your_secret_key', // Replace with a strong secret key
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false, // Don't save uninitialized sessions
     cookie: { secure: false } // Set to true if using HTTPS
 }));
+
+// Redirect to login page if not authenticated
+app.get('/', (req, res) => {
+    if (!req.session.user) {
+        // If no user session exists, redirect to login
+        res.redirect('/login');
+    } else {
+        // If user session exists, redirect to home/dashboard
+        res.redirect('/home');
+    }
+});
+
 
 // Middleware to protect routes
 function checkAuth(req, res, next) {
@@ -26,14 +38,25 @@ function checkAuth(req, res, next) {
     }
 }
 
-// Serve the index page after login, but only if authenticated
-app.get('/', checkAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+// Root route: redirect to login page if not authenticated
+app.get('/', (req, res) => {
+    if (!req.session.user) {
+        // Redirect to login page if no user session exists
+        res.redirect('/login');
+    } else {
+        // Redirect to home page if the user session exists
+        res.redirect('/home');
+    }
 });
 
 // Serve the login page
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/login.html'));
+});
+
+// Serve the home/dashboard page after login, but only if authenticated
+app.get('/home', checkAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Handle login
@@ -43,7 +66,7 @@ app.post('/login', (req, res) => {
 
     if (user) {
         req.session.user = user; // Store user info in session
-        res.redirect('/');
+        res.redirect('/home'); // Redirect to the home/dashboard page
     } else {
         res.send('Invalid credentials. <a href="/login">Try again</a>');
     }
@@ -63,7 +86,7 @@ app.post('/register', (req, res) => {
         res.send('User already exists. <a href="/register">Try again</a>');
     } else {
         users.push({ email, password });
-        res.redirect('/login');
+        res.redirect('/login'); // Redirect to login after successful registration
     }
 });
 
@@ -73,7 +96,7 @@ app.get('/logout', (req, res) => {
         if (err) {
             return res.send('Error logging out.');
         }
-        res.redirect('/login'); // Redirect to the login page
+        res.redirect('/login'); // Redirect to the login page after logout
     });
 });
 
